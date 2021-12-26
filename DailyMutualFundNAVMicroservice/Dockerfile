@@ -7,10 +7,10 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
-COPY ["DailyMutualFundNAVMicroservice/DailyMutualFundNAVMicroservice.csproj", "DailyMutualFundNAVMicroservice/"]
-RUN dotnet restore "DailyMutualFundNAVMicroservice/DailyMutualFundNAVMicroservice.csproj"
+COPY *.csproj ./
+RUN dotnet restore "DailyMutualFundNAVMicroservice.csproj"
 COPY . .
-WORKDIR "/src/DailyMutualFundNAVMicroservice"
+
 RUN dotnet build "DailyMutualFundNAVMicroservice.csproj" -c Release -o /app/build
 
 FROM build AS publish
